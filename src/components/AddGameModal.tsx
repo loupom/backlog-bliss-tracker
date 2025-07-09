@@ -20,7 +20,6 @@ export const AddGameModal: React.FC<AddGameModalProps> = ({ onAddGame }) => {
 
   const handleGameSelect = (gameData: {
     title: string;
-    platform: Platform;
     genre: any[];
     imageUrl?: string;
     howLongToBeat?: number;
@@ -28,7 +27,7 @@ export const AddGameModal: React.FC<AddGameModalProps> = ({ onAddGame }) => {
   }) => {
     const newGame: Omit<Game, 'id' | 'dateAdded'> = {
       title: gameData.title,
-      platform: gameData.platform,
+      platform: platform,
       status: 'backlog',
       genre: gameData.genre,
       imageUrl: gameData.imageUrl,
@@ -64,6 +63,16 @@ export const AddGameModal: React.FC<AddGameModalProps> = ({ onAddGame }) => {
         
         <div className="space-y-6">
           <div className="space-y-2">
+            <Label>Search & Add Game</Label>
+            <GameSearchInput 
+              onGameSelect={handleGameSelect}
+            />
+            <p className="text-xs text-muted-foreground">
+              Start typing to search for games. Game details will be automatically filled.
+            </p>
+          </div>
+          
+          <div className="space-y-2">
             <Label htmlFor="platform">Platform *</Label>
             <Select value={platform} onValueChange={(value: Platform) => setPlatform(value)}>
               <SelectTrigger>
@@ -75,17 +84,6 @@ export const AddGameModal: React.FC<AddGameModalProps> = ({ onAddGame }) => {
                 <SelectItem value="gog">GOG</SelectItem>
               </SelectContent>
             </Select>
-          </div>
-          
-          <div className="space-y-2">
-            <Label>Search & Add Game</Label>
-            <GameSearchInput 
-              onGameSelect={handleGameSelect}
-              selectedPlatform={platform}
-            />
-            <p className="text-xs text-muted-foreground">
-              Start typing to search for games. Game details will be automatically filled.
-            </p>
           </div>
           
           <div className="space-y-2">

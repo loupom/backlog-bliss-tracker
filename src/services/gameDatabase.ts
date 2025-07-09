@@ -78,6 +78,39 @@ class MockGameDatabase implements GameDatabaseService {
       playtime: 22,
       released: "2020-12-10",
       rating: 4.21
+    },
+    {
+      id: 3,
+      name: "Red Dead Redemption 2",
+      background_image: "https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg",
+      metacritic: 97,
+      genres: [{ name: "Action" }, { name: "Adventure" }],
+      platforms: [{ platform: { name: "PC" } }, { platform: { name: "Xbox" } }],
+      playtime: 60,
+      released: "2018-10-26",
+      rating: 4.59
+    },
+    {
+      id: 4,
+      name: "Hollow Knight",
+      background_image: "https://media.rawg.io/media/games/4cf/4cfc6b7f1850590a4634b08bfab308ab.jpg",
+      metacritic: 90,
+      genres: [{ name: "Indie" }, { name: "Platformer" }],
+      platforms: [{ platform: { name: "PC" } }, { platform: { name: "Nintendo Switch" } }],
+      playtime: 27,
+      released: "2017-02-24",
+      rating: 4.64
+    },
+    {
+      id: 5,
+      name: "Elden Ring",
+      background_image: "https://media.rawg.io/media/games/5ec/5ecac5cb026ec26a56efcc546364e348.jpg",
+      metacritic: 96,
+      genres: [{ name: "RPG" }, { name: "Action" }],
+      platforms: [{ platform: { name: "PC" } }, { platform: { name: "PlayStation" } }],
+      playtime: 58,
+      released: "2022-02-25",
+      rating: 4.53
     }
   ];
 

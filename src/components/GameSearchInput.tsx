@@ -6,23 +6,20 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { gameDatabase, GameSearchResult } from '@/services/gameDatabase';
-import { Platform, Genre } from '@/types/Game';
+import { Genre } from '@/types/Game';
 
 interface GameSearchInputProps {
   onGameSelect: (gameData: {
     title: string;
-    platform: Platform;
     genre: Genre[];
     imageUrl?: string;
     howLongToBeat?: number;
     metacriticScore?: number;
   }) => void;
-  selectedPlatform: Platform;
 }
 
 export const GameSearchInput: React.FC<GameSearchInputProps> = ({
   onGameSelect,
-  selectedPlatform,
 }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<GameSearchResult[]>([]);
@@ -94,7 +91,6 @@ export const GameSearchInput: React.FC<GameSearchInputProps> = ({
   const handleGameSelect = (game: GameSearchResult) => {
     const gameData = {
       title: game.name,
-      platform: selectedPlatform,
       genre: mapGenres(game.genres),
       imageUrl: game.background_image,
       howLongToBeat: game.playtime > 0 ? game.playtime : undefined,

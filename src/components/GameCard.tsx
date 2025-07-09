@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Game, GameStatus } from '@/types/Game';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -32,14 +32,22 @@ const platformColors = {
 };
 
 export const GameCard: React.FC<GameCardProps> = ({ game, onStatusChange, onEdit, compact = false }) => {
+  const [currentStatus, setCurrentStatus] = useState<GameStatus>(game.status);
   const [isStatusChanging, setIsStatusChanging] = useState(false);
-  const statusInfo = statusConfig[game.status];
+
+  // Update local status when game prop changes
+  useEffect(() => {
+    setCurrentStatus(game.status);
+  }, [game.status]);
+
+  const statusInfo = statusConfig[currentStatus];
   const StatusIcon = statusInfo.icon;
 
   const handleStatusChange = async (newStatus: GameStatus) => {
-    if (newStatus === game.status) return;
+    if (newStatus === currentStatus) return;
     
     setIsStatusChanging(true);
+    setCurrentStatus(newStatus); // Update UI immediately
     
     // Add a small delay to ensure visual feedback
     setTimeout(() => {
@@ -136,7 +144,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onStatusChange, onEdit
             <div className="space-y-2">
               <label className="text-xs font-medium text-muted-foreground">Change Status</label>
               <Select 
-                value={game.status} 
+                value={currentStatus} 
                 onValueChange={handleStatusChange}
                 disabled={isStatusChanging}
               >
