@@ -53,7 +53,7 @@ const Index = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <Trophy className="w-12 h-12 text-primary mx-auto mb-4 animate-pulse" />
-          <p className="text-lg text-muted-foreground">Loading your game library...</p>
+          <p className="text-lg text-muted-foreground font-gaming">Loading your game library...</p>
         </div>
       </div>
     );
@@ -67,7 +67,7 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <Trophy className="w-8 h-8 text-primary" />
             <div>
-              <h1 className="text-xl font-bold">Game Backlog</h1>
+              <h1 className="text-xl font-bold font-gaming">Game Backlog</h1>
               <p className="text-xs text-muted-foreground">Conquer your library</p>
             </div>
           </div>
@@ -80,41 +80,41 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Games</CardTitle>
+              <CardTitle className="text-sm font-medium font-gaming">Total Games</CardTitle>
               <Trophy className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{games.length}</div>
+              <div className="text-2xl font-bold font-gaming">{games.length}</div>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Currently Playing</CardTitle>
+              <CardTitle className="text-sm font-medium font-gaming">Currently Playing</CardTitle>
               <Play className="h-4 w-4 text-green-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-500">{currentlyPlaying.length}</div>
+              <div className="text-2xl font-bold text-green-500 font-gaming">{currentlyPlaying.length}</div>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Backlog</CardTitle>
+              <CardTitle className="text-sm font-medium font-gaming">Backlog</CardTitle>
               <Target className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-500">{backlogCount}</div>
+              <div className="text-2xl font-bold text-blue-500 font-gaming">{backlogCount}</div>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Completed</CardTitle>
+              <CardTitle className="text-sm font-medium font-gaming">Completed</CardTitle>
               <Trophy className="h-4 w-4 text-purple-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-purple-500">{completedCount}</div>
+              <div className="text-2xl font-bold text-purple-500 font-gaming">{completedCount}</div>
             </CardContent>
           </Card>
         </div>
@@ -122,7 +122,7 @@ const Index = () => {
         {/* Currently Playing Section */}
         {currentlyPlaying.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 font-gaming">
               <Play className="w-5 h-5 text-green-500" />
               Currently Playing
             </h2>
@@ -202,7 +202,7 @@ const Index = () => {
         {filteredGames.length === 0 ? (
           <div className="text-center py-12">
             <Trophy className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">No games found</h3>
+            <h3 className="text-xl font-semibold mb-2 font-gaming">No games found</h3>
             <p className="text-muted-foreground mb-4">
               {games.length === 0 
                 ? "Start building your game library by adding some games!"

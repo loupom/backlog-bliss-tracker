@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Gaming-focused design system with dark theme and vibrant accents */
 
@@ -56,9 +56,16 @@
   }
 
   body {
-    @apply bg-background text-foreground font-['Inter'];
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-feature-settings: 'cv11', 'ss01';
     font-variation-settings: 'opsz' 32;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-gaming {
+    font-family: 'Orbitron', 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -68,7 +75,7 @@
   }
   
   .status-badge {
-    @apply px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide;
+    @apply px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide transition-all duration-200;
   }
   
   .platform-badge {
