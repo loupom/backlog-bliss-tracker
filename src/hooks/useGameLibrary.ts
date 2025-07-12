@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { Game, GameStatus, Platform } from '@/types/Game';
+import { Game, GameStatus } from '@/types/Game';
 
 const STORAGE_KEY = 'game-library';
 
@@ -80,10 +79,6 @@ export const useGameLibrary = () => {
     return games.filter(game => game.status === status);
   };
 
-  const getGamesByPlatform = (platform: Platform) => {
-    return games.filter(game => game.platform === platform);
-  };
-
   const currentlyPlaying = games.filter(game => game.status === 'playing');
   const backlogCount = games.filter(game => game.status === 'backlog').length;
   const completedCount = games.filter(game => game.status === 'finished' || game.status === 'completed').length;
@@ -96,7 +91,6 @@ export const useGameLibrary = () => {
     updateGame,
     deleteGame,
     getGamesByStatus,
-    getGamesByPlatform,
     currentlyPlaying,
     backlogCount,
     completedCount,

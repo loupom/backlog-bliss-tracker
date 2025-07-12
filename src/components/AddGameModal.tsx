@@ -1,21 +1,18 @@
-
 import React, { useState } from 'react';
-import { Game, Platform } from '@/types/Game';
+import { Plus } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, Search } from 'lucide-react';
-import { GameSearchInput } from './GameSearchInput';
+import { Label } from '@/components/ui/label';
+import { GameSearchInput } from '@/components/GameSearchInput';
+import { Game, Genre } from '@/types/Game';
 
 interface AddGameModalProps {
   onAddGame: (game: Omit<Game, 'id' | 'dateAdded'>) => void;
 }
 
 export const AddGameModal: React.FC<AddGameModalProps> = ({ onAddGame }) => {
-  const [open, setOpen] = useState(false);
-  const [platform, setPlatform] = useState<Platform>('steam');
+  const [isOpen, setIsOpen] = useState(false);
   const [notes, setNotes] = useState('');
 
   const handleGameSelect = (gameData: {
@@ -27,8 +24,7 @@ export const AddGameModal: React.FC<AddGameModalProps> = ({ onAddGame }) => {
   }) => {
     const newGame: Omit<Game, 'id' | 'dateAdded'> = {
       title: gameData.title,
-      platform: platform,
-      status: 'backlog',
+      status: 'wishlist',
       genre: gameData.genre,
       imageUrl: gameData.imageUrl,
       howLongToBeat: gameData.howLongToBeat,
@@ -38,14 +34,12 @@ export const AddGameModal: React.FC<AddGameModalProps> = ({ onAddGame }) => {
     };
 
     onAddGame(newGame);
-    
-    // Reset form
+    setIsOpen(false);
     setNotes('');
-    setOpen(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button className="gap-2 font-gaming">
           <Plus className="w-4 h-4" />
@@ -56,49 +50,36 @@ export const AddGameModal: React.FC<AddGameModalProps> = ({ onAddGame }) => {
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 font-gaming">
-            <Search className="w-5 h-5" />
             Add Game to Library
           </DialogTitle>
         </DialogHeader>
         
         <div className="space-y-6">
-          <div className="space-y-2">
-            <Label>Search & Add Game</Label>
-            <GameSearchInput 
-              onGameSelect={handleGameSelect}
-            />
-            <p className="text-xs text-muted-foreground">
-              Start typing to search for games. Game details will be automatically filled.
-            </p>
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="platform">Platform *</Label>
-            <Select value={platform} onValueChange={(value: Platform) => setPlatform(value)}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="steam">Steam</SelectItem>
-                <SelectItem value="epic">Epic Games</SelectItem>
-                <SelectItem value="gog">GOG</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="notes">Notes (Optional)</Label>
-            <Textarea
-              id="notes"
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Any additional notes about this game..."
-              rows={3}
-            />
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="game-search">Search for a game</Label>
+              <GameSearchInput onGameSelect={handleGameSelect} />
+            </div>
+
+            <div>
+              <Label htmlFor="notes">Notes (optional)</Label>
+              <Textarea
+                id="notes"
+                placeholder="Add any notes about this game..."
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                rows={3}
+              />
+            </div>
           </div>
           
           <div className="flex gap-2 pt-4">
-            <Button type="button" variant="outline" onClick={() => setOpen(false)} className="flex-1">
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={() => setIsOpen(false)} 
+              className="flex-1"
+            >
               Cancel
             </Button>
           </div>

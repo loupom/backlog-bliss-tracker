@@ -1,6 +1,5 @@
 
 export type GameStatus = 'wishlist' | 'backlog' | 'playing' | 'finished' | 'completed' | 'paused' | 'dropped';
-export type Platform = 'steam' | 'epic' | 'gog';
 export type Genre = 'Action' | 'Adventure' | 'RPG' | 'Strategy' | 'Simulation' | 'Sports' | 'Racing' | 'Puzzle' | 'Horror' | 'Indie' | 'MMO' | 'FPS' | 'Platformer';
 
 export interface GameGoal {
@@ -13,7 +12,6 @@ export interface GameGoal {
 export interface Game {
   id: string;
   title: string;
-  platform: Platform;
   status: GameStatus;
   genre: Genre[];
   imageUrl?: string;
